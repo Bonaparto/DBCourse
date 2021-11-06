@@ -25,8 +25,6 @@ h. NOT DONE SELECT foo.name, foo.city, s.client_id, foo.name, foo.charge FROM ((
 NATURAL JOIN client as c WHERE c.dealer_id = d.id) as foo
 NATURAL JOIN sell as s WHERE s.dealer_id = foo.dealer_id);
 
-i.
-
 
 a. CREATE view general_sell_info as
     SELECT count(distinct client_id) as clients_amount, avg(amount) as avg_sum, sum(amount) as total_sum, date FROM
@@ -54,3 +52,9 @@ e. CREATE view location_sales_info as
     SELECT city, count(foo.id) as num_of_sells, avg(amount) as avg_sum, sum(amount) as total_sum FROM
     (SELECT city, sell.id, amount FROM sell, client
     WHERE client.id = sell.client_id) as foo GROUP BY city;
+
+g. CREATE view strong_cities as
+    SELECT city, total_expenses FROM
+    ((SELECT city, sum(amount) as total_expenses FROM sell, client WHERE sell.client_id = client.id GROUP BY city) as lol CROSS JOIN
+    (SELECT sum(amount) as location_amount_sum FROM dealer, sell WHERE dealer.id = sell.dealer_id) as lmao)
+    WHERE total_expenses > location_amount_sum;
