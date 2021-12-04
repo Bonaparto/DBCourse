@@ -1,0 +1,15 @@
+This is the database of imaginary package delivery company.
+
+Structure:
+
+data_generation folder consists of files, which were created to generate insert queries. All made by myself.
+
+ER_Diagram.png is the ER-Model of the database.
+
+Relational_Model.sql consists of commands, which create tables in the database. Also there are indices and triggers.
+
+Populate.sql consists of insert commands only.
+
+Queries.sql consists of querires which were described in part 4 of the project.
+
+Full_Project.sql is the file of the whole project together.
